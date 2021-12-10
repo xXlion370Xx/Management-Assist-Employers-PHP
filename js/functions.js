@@ -1,5 +1,5 @@
-const llegar = "https://confeccioneslyz.herokuapp.com/php/llegar.php";
-const salir = "https://confeccioneslyz.herokuapp.com/php/salir.php";
+const llegar = "http://localhost/ConfeccionesLYZ/php/llegar.php";
+const salir = "http://localhost/ConfeccionesLYZ/php/salir.php";
 
 function newDate(date) {
   let d = date.split("/");
@@ -8,71 +8,86 @@ function newDate(date) {
   return data;
 }
 
-async function registrar() {
-  return await fetch(
-    "https://www.timeapi.io/api/TimeZone/zone?timeZone=America/Bogota"
-  ).then((response) =>
-    response.json().then((data) => {
-      if (data.datetime) {
-        let date = data.datetime.split("T")[0];
-        let time = data.datetime.split("T")[1].split(".")[0];
+async function postData(url = "", data = {}, method = "POST") {
+  let options = {};
 
-        return { date, time };
-      } else {
-        const datos = new Date().toLocaleString("en-GB").split(", ");
-
-        return { date: newDate(datos[0]), time: datos[1] };
-      }
-    })
-  );
-}
-
-async function postData(url = "", data = {}) {
+  if (method === "GET") {
+    options = {
+      method: method, // *get, post, put, delete, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "content-type": "application/json",
+        // 'content-type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerpolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    };
+  } else {
+    options = {
+      method: method, // *get, post, put, delete, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "content-type": "application/json",
+        // 'content-type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerpolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "content-type" header
+    };
+  }
   // Opciones por defecto estan marcadas con un *
-  const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: "follow", // manual, *follow, error
-    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
-  });
+  const response = await fetch(url, options);
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-function prevenirLlegada() {
-  const confirmacion = confirm(
-    "Estas apunto de registrar llegada, ¿Deseas continuar?"
-  );
-  if (confirmacion) {
-    registrar().then((x) =>
-      postData(llegar, x).then((data) => console.log(data))
-    );
-    alert("Llegada registrada correctamente.");
-    location.reload();
-  } else if (confirmacion == false) {
-    preventDefault();
-  }
+async function registrar() {
+  return await postData(
+    "http://localhost/ConfeccionesLYZ/request.php",
+    {},
+    "GET"
+  ).then((x) => {
+    if (x) {
+      let date = x.split("T")[0];
+      let time = x.split("T")[1].split(".")[0];
+
+      return { date, time };
+    } else {
+      const datos = new Date().toLocaleString("en-GB").split(", ");
+      return { date: newDate(datos[0]), time: datos[1] };
+    }
+  });
+
+  //  return await fetch("http://localhost/ConfeccionesLYZ/request.php", {
+  //    method: "GET",
+  //  }).then((response) =>
+  //    response.json().then((data) => {
+  //      if (data.datetime) {
+  //        let date = data.datetime.split("T")[0];
+  //        let time = data.datetime.split("T")[1].split(".")[0];
+  //        console.log(data, time);
+  //
+  //        return { date, time };
+  //      } else {
+  //        const datos = new Date().toLocaleString("en-GB").split(", ");
+  //
+  //        return { date: newDate(datos[0]), time: datos[1] };
+  //      }
+  //    })
+  //  );
 }
 
-function prevenirSalida() {
-  const confirmacion = confirm(
-    "Estas apunto de registrar salida, ¿Deseas continuar?"
+function llegarF() {
+  registrar().then((x) =>
+    postData(llegar, x).then((data) => console.log(data))
   );
-  if (confirmacion) {
-    registrar().then((x) =>
-      postData(salir, x).then((data) => console.log(data))
-    );
-    alert("Salida registrada correctamente.");
-    location.reload();
-  } else if (confirmacion == false) {
-    preventDefault();
-  }
+}
+
+function salirF() {
+  registrar().then((x) => postData(salir, x).then((data) => console.log(data)));
 }
 
 function hideBtn(data) {
@@ -94,7 +109,7 @@ function exist() {
   registrar().then((x) => {
     const { date } = x;
 
-    postData("https://confeccioneslyz.herokuapp.com/php/today.php", {
+    postData("http://localhost/ConfeccionesLYZ/php/today.php", {
       date,
     }).then((data) => hideBtn(data));
   });
@@ -116,13 +131,10 @@ function MostrarTabla() {
   }
 
   async function getAll(id) {
-    return await postData(
-      "https://confeccioneslyz.herokuapp.com/crudAsis.php",
-      {
-        id: id,
-        type: "all",
-      }
-    ).then((x) => x);
+    return await postData("http://localhost/ConfeccionesLYZ/crudAsis.php", {
+      id: id,
+      type: "all",
+    }).then((x) => x);
   }
 
   function rowCreator() {
@@ -134,7 +146,7 @@ function MostrarTabla() {
 
   async function insert() {
     const usuario = await postData(
-      "https://confeccioneslyz.herokuapp.com/crudAsis.php",
+      "http://localhost/ConfeccionesLYZ/crudAsis.php",
       { type: "id" }
     );
 
