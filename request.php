@@ -1,5 +1,7 @@
 <?php
 
+require './config/headers.php';
+
 if ($_SERVER['REQUEST_METHOD'] ===  'GET') {
 
     $url = 'https://www.timeapi.io/api/TimeZone/zone?timeZone=America/Bogota';
