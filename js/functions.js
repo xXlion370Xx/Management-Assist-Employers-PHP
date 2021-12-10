@@ -10,7 +10,7 @@ function newDate(date) {
 
 async function registrar() {
   return await fetch(
-    "http://worldtimeapi.org/api/timezone/America/Bogota"
+    "https://www.timeapi.io/api/TimeZone/zone?timeZone=America/Bogota"
   ).then((response) =>
     response.json().then((data) => {
       if (data.datetime) {
