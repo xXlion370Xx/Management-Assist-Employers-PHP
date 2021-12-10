@@ -80,14 +80,34 @@ async function registrar() {
   //  );
 }
 
-function llegarF() {
-  registrar().then((x) =>
-    postData(llegar, x).then((data) => console.log(data))
+function prevenirLlegada() {
+  const confirmacion = confirm(
+    "Estas apunto de registrar llegada, ¿Deseas continuar?"
   );
+  if (confirmacion) {
+    registrar().then((x) =>
+      postData(llegar, x).then((data) => console.log(data))
+    );
+    alert("Llegada registrada correctamente.");
+    location.reload();
+  } else if (confirmacion == false) {
+    preventDefault();
+  }
 }
 
-function salirF() {
-  registrar().then((x) => postData(salir, x).then((data) => console.log(data)));
+function prevenirSalida() {
+  const confirmacion = confirm(
+    "Estas apunto de registrar salida, ¿Deseas continuar?"
+  );
+  if (confirmacion) {
+    registrar().then((x) =>
+      postData(salir, x).then((data) => console.log(data))
+    );
+    alert("Salida registrada correctamente.");
+    location.reload();
+  } else if (confirmacion == false) {
+    preventDefault();
+  }
 }
 
 function hideBtn(data) {
