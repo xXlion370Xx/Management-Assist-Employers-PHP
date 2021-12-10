@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ES">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Seleccion de usuario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../cssBootstrap/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="../css/SeleccionAsistencia.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" />
+  <script src="../js/functions.js"></script>
+</head>
+
+<body>
+  <div class="container-lg" id="container">
+    <div class="row header">
+      <div class="col-12">
+        <a href="../CerrarSesion.php" class="btn btn-secondary bi bi-door-closed-fill">Cerrar Sesión</a>
+      </div>
+    </div>
+
+    <div class="row body">
+      <div class="col-12">
+        <h1>Presiona para registrar hora.</h1>
+
+        <button hidden onclick="prevenirLlegada(); exist()" class="btn btn-primary botones" id="Boton-1">
+          <p>Llegada al taller</p>
+        </button>
+        <br />
+        <button hidden onclick="prevenirSalida(); exist()" class="btn btn-primary botones" id="Boton-2">
+          <p>Salida del taller</p>
+        </button>
+      </div>
+      <div class="container-table">
+        <div class="container thead">
+          <div class="row">
+            <div class="col-12" id="col-12"></div>
+            <div class="col-3 head">Entrada</div>
+            <div class="col-3 head">Salida</div>
+            <div class="col-3 head">Fecha</div>
+          </div>
+        </div>
+        <div id="tbody" class="container"></div>
+        <script>
+          MostrarTabla();
+        </script>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>

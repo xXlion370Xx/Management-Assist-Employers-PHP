@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container-lg {
+  height: 100vh;
+}
+
+.head {
+  background-color: #3dbaf1;
+  border-radius: 5px;
+  margin-left: 30px;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin: auto;
+  text-align: center;
+}
+
+.botones {
+  padding: 50px;
+  margin: 50px;
+  font-size: 26px;
+}
+
+.bi-arrow-bar-left {
+  font-size: 20px;
+}

@@ -1,0 +1,16 @@
+.container-md{
+	margin-top: 10%;
+}
+
+h1{
+	text-align: center;
+}
+
+.row{
+	justify-content: center;
+}
+
+.col-8{
+	background: #F4F4F4;
+	border-radius: 5px;
+}

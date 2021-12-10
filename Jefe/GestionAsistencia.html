@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../cssBootstrap/bootstrap.css">
+  <link rel="stylesheet" href="../css/ViewUsers.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asistencias</title>
+</head>
+
+<body>
+
+  <div class="container-lg" id="container-lg">
+
+    <h1 id="title"></h1>
+    <script src="../jsBootstrap/bootstrap.js"></script>
+    <a href="viewUsers.html" class="btn btn-secondary">Regresar</a>
+    <div class="container thead">
+      <div class="row">
+        <div class="col head">Entrada</div>
+        <div class="col head">Salida</div>
+        <div class="col head">Fecha</div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+    <div id="tbody" class="container"></div>
+    <script src="../js/tablaAsis.js"></script>
+    <script>
+      insert();
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              Modificar usuario
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+              <input hidden id="idProvider" type="text" />
+              Entrada:&nbsp<input id="entradaEdit" type="text" name="entradaEdit" />
+              <br />
+              <br />
+              Salida: &nbsp
+              <input type="text" name="salidaEdit" id="salidaEdit" />
+              <br />
+              <br />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="deleteRecord()" class="btn btn-danger" data-bs-dismiss="modal">
+              Eliminar
+            </button>
+            <button type="button" onclick="updateRecord()" data-bs-dismiss="modal" class="btn btn-primary">
+              Modificar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
