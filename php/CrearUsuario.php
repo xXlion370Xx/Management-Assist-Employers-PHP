@@ -6,7 +6,7 @@ $conexion = ConectarBD();
 $nombre = $_POST['nombre'];
 $tipoU = $_POST['UserType'];
 
-$sql = "INSERT INTO usuarios(Usuario, Contraseña, Tipo) VALUES('$nombre', 123, '$tipoU')";
+$sql = "INSERT INTO Usuarios(Usuario, Contraseña, Tipo) VALUES('$nombre', 123, '$tipoU')";
 $consulta = mysqli_query($conexion, $sql);
 
 if ($consulta) {
