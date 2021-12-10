@@ -1,4 +1,3 @@
-https://confeccioneslyz.herokuapp.com/
 const llegar = "https://confeccioneslyz.herokuapp.com/php/llegar.php";
 const salir = "https://confeccioneslyz.herokuapp.com/php/salir.php";
 
@@ -132,10 +131,13 @@ function MostrarTabla() {
   }
 
   async function getAll(id) {
-    return await postData("https://confeccioneslyz.herokuapp.com/crudAsis.php", {
-      id: id,
-      type: "all",
-    }).then((x) => x);
+    return await postData(
+      "https://confeccioneslyz.herokuapp.com/crudAsis.php",
+      {
+        id: id,
+        type: "all",
+      }
+    ).then((x) => x);
   }
 
   function rowCreator() {
