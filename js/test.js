@@ -75,7 +75,7 @@ async function updateUser() {
 
   modifyOne(package).then((x) => {
     console.log(x);
-    location.reload();
+    // location.reload();
   });
 }
 
