@@ -1,120 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../cssBootstrap/bootstrap.css"
+    />
+    <link rel="stylesheet" href="../css/ViewUsers.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
+    />
+    <title>Usuarios</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="../cssBootstrap/bootstrap.css">
-  <link rel="stylesheet" href="../css/ViewUsers.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-  <title>Usuarios</title>
-</head>
+  <body>
+    <script src="../jsBootstrap/bootstrap.js"></script>
+    <script src="../js/test.js"></script>
 
-<body>
-
-  <script src="../jsBootstrap/bootstrap.js"></script>
-  <script src="../js/test.js"></script>
-
-  <div class="container-lg">
-    <div class="content">
-      <a href="../CerrarSesion.php" class="btn btn-secondary bi bi-door-closed-fill">Cerrar Sesión</a>
-      <div class="container thead">
-        <div class="row">
-          <div class="col head">ID</div>
-          <div class="col head">Nombre</div>
-          <div class="col head">Tipo</div>
-          <div class="col-3"></div>
+    <div class="container-lg">
+      <div class="content">
+        <a
+          href="../CerrarSesion.php"
+          class="btn btn-secondary bi bi-door-closed-fill"
+          >Cerrar Sesión</a
+        >
+        <div class="container thead">
+          <div class="row">
+            <div class="col head">ID</div>
+            <div class="col head">Nombre</div>
+            <div class="col head">Tipo</div>
+            <div class="col-3"></div>
+          </div>
         </div>
-      </div>
-      <div id="tbody"></div>
-      <script>
-        insert();
-      </script>
+        <div id="tbody"></div>
+        <script>
+          insert();
+        </script>
 
-      <!-- MODAL PARA CREAR USUARIOS -->
+        <!-- MODAL PARA CREAR USUARIOS -->
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Crear nuevo usuario
-      </button>
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Crear nuevo usuario
+        </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-              <form id="form-crear" action="../php/CrearUsuario.php" method="post">
-                Nombre: <br>
-                <input required type="text" class="inputs" name="nombre"><br>
-                <label for="UserType">Tipo de usuario:</label> <br>
-                <select required name="UserType" id="UserType" class="inputs">
-                  <option id="emp" value="Empleado" class="inputs">Empleado</option>
-                  <option id="boss" value="Jefe" class="inputs">Jefe</option>
-                </select> <br>
-                <i>La contraseña sera la misma para todos los empleados.</i>
-              </form>
-
-            </div>
-            <div class="modal-footer">
-              <button form="form-crear" type="submit" class="btn btn-primary">Crear</button>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form
+                  id="form-crear"
+                  action="../php/CrearUsuario.php"
+                  method="post"
+                >
+                  Nombre: <br />
+                  <input
+                    required
+                    type="text"
+                    class="inputs"
+                    name="nombre"
+                  /><br />
+                  <label for="UserType">Tipo de usuario:</label> <br />
+                  <select required name="UserType" id="UserType" class="inputs">
+                    <option value="Empleado" class="inputs">Empleado</option>
+                    <option value="Jefe" class="inputs">Jefe</option>
+                  </select>
+                  <br />
+                  <i>La contraseña sera la misma para todos los empleados.</i>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button form="form-crear" type="submit" class="btn btn-primary">
+                  Crear
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- ------------------------------------------------------- -->
+        <!-- ------------------------------------------------------- -->
 
-      <!-- MODAL QUE SELECCIONA UN REGISTRO -->
+        <!-- MODAL QUE SELECCIONA UN REGISTRO -->
 
-      <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">
-                Modificar usuario
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form action="" method="post">
-                <input hidden id="idProvider" type="text" />
-                Nombre:&nbsp<input id="EditName" type="text" name="nombreEdit" class="inputs" />
-                <br />
-                <br />
-                Contraseña: &nbsp
-                <input type="password" name="password" id="pass" class="inputs" />
-                <br />
-                <br />
-                <label for="UserType">Tipo de usuario:</label>
-                <select name="UserType" id="UserType" class="inputs">
-                  <option id="emp" value="Empleado">Empleado</option>
-                  <option id="boss" value="Jefe">Jefe</option>
-                </select>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" onclick="deleteUser()" class="btn btn-danger" data-bs-dismiss="modal">
-                Eliminar
-              </button>
-              <button type="button" onclick="updateUser()" data-bs-dismiss="modal" class="btn btn-primary">
-                Modificar
-              </button>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Modificar usuario
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="post">
+                  <input hidden id="idProvider" type="text" />
+                  Nombre:&nbsp<input
+                    id="EditName"
+                    type="text"
+                    name="nombreEdit"
+                    class="inputs"
+                  />
+                  <br />
+                  <br />
+                  Contraseña: &nbsp
+                  <input
+                    type="password"
+                    name="password"
+                    id="pass"
+                    class="inputs"
+                  />
+                  <br />
+                  <br />
+                  <label for="UserType">Tipo de usuario:</label>
+                  <select name="UserType" id="UserType" class="inputs">
+                    <option id="emp" value="Empleado">Empleado</option>
+                    <option id="boss" value="Jefe">Jefe</option>
+                  </select>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  onclick="deleteUser()"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Eliminar
+                </button>
+                <button
+                  type="button"
+                  onclick="updateUser()"
+                  data-bs-dismiss="modal"
+                  class="btn btn-primary"
+                >
+                  Modificar
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <!-- ------------------------------------------------------- -->
       </div>
-      <!-- ------------------------------------------------------- -->
-
     </div>
-
-  </div>
-
-</body>
-
+  </body>
 </html>
