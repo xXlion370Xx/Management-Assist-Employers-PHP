@@ -16,12 +16,12 @@ async function postData(url = "", data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-const url = "https://confeccioneslyz.herokuapp.com/test.php";
+const url = "https://confeccioneslyz.000webhostapp.com/test.php";
 
 async function admin() {
   const response = await postData(url, { type: "auth" });
   if (!response.status) {
-    window.location.href = "https://confeccioneslyz.herokuapp.com";
+    window.location.href = "https://confeccioneslyz.000webhostapp.com/";
   }
 }
 

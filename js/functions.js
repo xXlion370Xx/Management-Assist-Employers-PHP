@@ -1,5 +1,5 @@
-const llegar = "https://confeccioneslyz.herokuapp.com/php/llegar.php";
-const salir = "https://confeccioneslyz.herokuapp.com/php/salir.php";
+const llegar = "https://confeccioneslyz.000webhostapp.com/php/llegar.php";
+const salir = "https://confeccioneslyz.000webhostapp.com/php/salir.php";
 
 function newDate(date) {
   let d = date.split("/");
@@ -46,7 +46,7 @@ async function postData(url = "", data = {}, method = "POST") {
 
 async function registrar() {
   return await postData(
-    "https://confeccioneslyz.herokuapp.com/request.php",
+    "https://confeccioneslyz.000webhostapp.com/request.php",
     {},
     "GET"
   ).then((x) => {
@@ -129,7 +129,7 @@ function exist() {
   registrar().then((x) => {
     const { date } = x;
 
-    postData("https://confeccioneslyz.herokuapp.com/php/today.php", {
+    postData("https://confeccioneslyz.000webhostapp.com/php/today.php", {
       date,
     }).then((data) => hideBtn(data));
   });
@@ -152,7 +152,7 @@ function MostrarTabla() {
 
   async function getAll(id) {
     return await postData(
-      "https://confeccioneslyz.herokuapp.com/crudAsis.php",
+      "https://confeccioneslyz.000webhostapp.com/crudAsis.php",
       {
         id: id,
         type: "all",
@@ -169,7 +169,7 @@ function MostrarTabla() {
 
   async function insert() {
     const usuario = await postData(
-      "https://confeccioneslyz.herokuapp.com/crudAsis.php",
+      "https://confeccioneslyz.000webhostapp.com/crudAsis.php",
       { type: "id" }
     );
 
