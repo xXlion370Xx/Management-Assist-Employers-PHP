@@ -16,7 +16,7 @@ async function postData(url = "", data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-const url = "https://confeccioneslyz.herokuapp.com/crudAsis.php";
+const url = "https://confeccioneslyz.000webhostapp.com/crudAsis.php";
 
 const UserId = localStorage.getItem("Uid");
 const Uname = localStorage.getItem("Uname");
@@ -24,7 +24,7 @@ const Uname = localStorage.getItem("Uname");
 async function admin() {
   const response = await postData(url, { type: "auth" });
   if (!response.status) {
-    window.location.href = "https://confeccioneslyz.herokuapp.com";
+    window.location.href = "https://confeccioneslyz.000webhostapp.com/";
   }
 }
 
