@@ -10,6 +10,7 @@
 </head>
 
 <body>
+	<script type="module" src="js/sweetAlert.js"></script>
 	<div class="container-md">
 
 		<div class="row">
