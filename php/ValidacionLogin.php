@@ -2,12 +2,12 @@
 
 session_start();
 
-$usuario="";
-$clave="";
+$usuario = "";
+$clave = "";
 
 if ($_POST) {
-    $usuario=(isset($_POST['usuario'])) ? $_POST['usuario'] : "";
-    $clave=(isset($_POST['contraseña'])) ? $_POST['contraseña'] : "";
+    $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : "";
+    $clave = (isset($_POST['contraseña'])) ? $_POST['contraseña'] : "";
 }
 
 require  'FuncConectar.php';
@@ -27,9 +27,25 @@ if ($Resultado) {
     // EOT;
 
     if ($Resultado['Tipo'] == "Empleado") {
-        header('location: ../Empleados/SeleccionAsistencia.html');
+        echo "<script>
+         var mensaje = '¡Ya hay una nueva versión de la página! Da clic en ok para acceder:\n\n';
+        var enlace = 'https://confeccioneslyz.onrender.com/' 
+        
+
+        if (confirm(mensaje + enlace)) {
+            window.location.href = enlace;
+        }
+        </script>";
     } elseif ($Resultado['Tipo'] == "Jefe") {
-        header('location: ../Jefe/viewUsers.html');
+        echo "<script>
+         var mensaje = '¡Ya hay una nueva versión de la página! Da clic en ok para acceder:\n\n';
+        var enlace = 'https://confeccioneslyz.onrender.com/' 
+        
+
+        if (confirm(mensaje + enlace)) {
+            window.location.href = enlace;
+        }
+        </script>";
     }
 } else {
     echo "<script>
