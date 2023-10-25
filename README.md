@@ -13,7 +13,7 @@ This project is based on having a record of employee entries and exits in a comp
 
 - **User-Friendly Interface**: Our intuitive design ensures that both employees and managers can use the application without difficulty.
 
-  ## Technology Used
+## Technology Used
 
 - **Programming Language**: I use PHP for the backend for his large documentation and facility to program.
 
